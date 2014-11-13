@@ -7,6 +7,8 @@ package
 	import dw.main.MainFacade;
 	import dw.main.controller.constants.MainNotifications;
 	
+	import starling.core.Starling;
+	
 	public class DoodleWarApplication extends Sprite
 	{
 		/**
@@ -19,12 +21,19 @@ package
 		 * 
 		 */
 		
+		protected var _starling:Starling;
+		
+		/**
+		 * 
+		 */
+		
 		public function DoodleWarApplication()
 		{
 			super();
 			
 			initStage();
 			initMainFacade();
+			initStarling();
 			
 			_mainFacade.startup( this );
 			
@@ -48,6 +57,15 @@ package
 		protected function initMainFacade() :void
 		{
 			_mainFacade = MainFacade.getInstance();
+		}
+		
+		/**
+		 * 
+		 */
+		
+		protected function initStarling() :void
+		{
+			log( _starling );
 		}
 	}
 }

@@ -9,7 +9,9 @@ package dw.main.controller.commands.engine
 		{
 			super.execute( notification );
 			
-			
+			log("HAHA");
+			log("Here is an example of logging some stuff!");
+			log("basically... is there too much white space?");
 		}
 	}
 }

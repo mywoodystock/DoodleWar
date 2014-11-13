@@ -6,7 +6,7 @@ package
 	 * 
 	 */
 	
-	public function log( message : String , sender : Object = null ) :void
+	public function log( message : * , sender : Object = null ) :void
 	{
 		var logger:Logger = Logger.getInstance();
 		

@@ -1,5 +1,6 @@
 package dw.main
 {
+	import dw.main.controller.commands.engine.StartGameEngineCommand;
 	import dw.main.controller.commands.startup.MainStartUpCommand;
 	import dw.main.controller.constants.MainNotifications;
 	
@@ -13,7 +14,7 @@ package dw.main
 		 * 
 		 */
 		
-		private static const FACADE_KEY : String = "MainFacade";
+		private static const FACADE_KEY : String = "DoodleWarFacade";
 		
 		
 		/**
@@ -37,7 +38,7 @@ package dw.main
 		
 		public function MainFacade()
 		{
-			log("Create 'MainFacade'");
+			log("Create '" + FACADE_KEY + "'");
 			
 			super( FACADE_KEY );
 		}
@@ -52,6 +53,7 @@ package dw.main
 			super.initializeController();
 			
 			this.registerCommand( MainNotifications.MAIN_START_UP, MainStartUpCommand);
+			this.registerCommand( MainNotifications.START_GAME_ENGINE, StartGameEngineCommand );
 		}
 		
 		

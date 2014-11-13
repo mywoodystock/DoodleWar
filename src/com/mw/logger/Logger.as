@@ -4,6 +4,9 @@ package com.mw.logger
 
 	public class Logger
 	{
+		/**
+		 * 
+		 */
 		private static const WITHOUT_SENDER_POINT 	: String = "-";
 		private static const WITH_SENDER_POINT 		: String = ">";
 		
@@ -41,24 +44,29 @@ package com.mw.logger
 		 * 
 		 */
 		
-		public function log( message : String , sender : Object = null ) :void
+		public function log( message :* , sender :Object = null ) :void
 		{
+			var messageString:String = (message is String) ? message as String : String( message );
+			
 			if ( sender == null)
 			{
-				traceWithoutSender( message );
-				
-				_lastSenderName = null;
+				if( _lastSenderName != null)
+				{
+					trace("");
+					_lastSenderName = null;
+				}
+				traceWithoutSender( messageString );
 			}
 			else
 			{
 				var newSenderName : String = getQualifiedClassName( sender );
 				if ( _lastSenderName == newSenderName )
 				{
-					traceWithSameSender( message );
+					traceWithSameSender( messageString );
 				}
 				else
 				{
-					traceWithNewSender( newSenderName, message );
+					traceWithNewSender( newSenderName, messageString );
 					
 					_lastSenderName = newSenderName;
 				}
@@ -68,9 +76,7 @@ package com.mw.logger
 		
 		protected function traceWithoutSender( message : String ) :void
 		{
-			trace(" ");
 			trace(WITHOUT_SENDER_POINT + " " + message );
-			trace(" ");
 		}
 		
 		protected function traceWithSameSender( message : String ) :void
@@ -80,6 +86,7 @@ package com.mw.logger
 		
 		protected function traceWithNewSender( newSenderName : String, message : String ) :void
 		{
+			trace("");
 			trace(SENDER_NAME_PREFIX + newSenderName + SENDER_NAME_POSTFIX);
 			trace(WITH_SENDER_POINT + " " + message);
 		}
